@@ -13,6 +13,23 @@ use Illuminate\Http\Response;
 
 class AuthController extends Controller
 {
+    public function register(Request $request)
+    {
+        $request->validade([
+            'nomeUsuario' => 'required|string',
+            'email' => 'required|string',
+            'senha' => 'required|string',
+            'senhaConfirmada' => 'required|string',
+        ]);
+
+        $funcionario = Funcionario::create([
+            'nomeUsuario' => $request->nomeUsuario,
+            'email' => $request->email,
+            'senha' => $request->senha,
+            'senhaConfirmada' => $request->senhaConfirmada,
+        ]);
+    }
+
     public function forgotPassword(Request $request): JsonResponse
     {
         $request->validate([
@@ -29,16 +46,16 @@ class AuthController extends Controller
         $request->validate([
             'token' => 'required|string',
             'email' => 'required|email',
-            'password' => 'required|min:6|confirmed',
+            'senha' => 'required|min:6|confirmed',
         ]);
 
         $status = Password::reset(
-            $request->only('email', 'password', 'password_confirmation', 'token'),
-            function(User $user, string $password){
-                $user->forceFill([
-                    'password' => Hash::make($password)
+            $request->only('email', 'senha', 'senhaConfirmada', 'token'),
+            function(Funcionario $funcionario, string $senha){
+                $funcionario->forceFill([
+                    'senha' => Hash::make($senha)
                 ])->setRemeberToken(Str::random(60));
-                $user->save();
+                $funcionario->save();
             }//Fim da Function
         );
 
