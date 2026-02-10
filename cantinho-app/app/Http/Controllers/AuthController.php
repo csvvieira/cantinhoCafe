@@ -19,16 +19,16 @@ class AuthController extends Controller
             'nomeUsuario' => 'required|string',
             'email' => 'required|string',
             'senha' => 'required|string',
-            'senhaConfirmada' => 'required|string',
         ]);
 
-        $funcionario = Funcionario::create([
+        $funcionario = funcionarioModel::create([
             'nomeUsuario' => $request->nomeUsuario,
             'email' => $request->email,
-            'senha' => $request->senha,
-            'senhaConfirmada' => $request->senhaConfirmada,
+            'senha' => Hash::make($request->senha),
         ]);
-    }
+
+        return response([], 201);
+    }//Fim da Register
 
     public function forgotPassword(Request $request): JsonResponse
     {
@@ -51,7 +51,7 @@ class AuthController extends Controller
 
         $status = Password::reset(
             $request->only('email', 'senha', 'senhaConfirmada', 'token'),
-            function(Funcionario $funcionario, string $senha){
+            function(funcionarioModel $funcionario, string $senha){
                 $funcionario->forceFill([
                     'senha' => Hash::make($senha)
                 ])->setRemeberToken(Str::random(60));

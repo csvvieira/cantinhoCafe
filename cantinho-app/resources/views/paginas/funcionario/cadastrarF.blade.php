@@ -1,45 +1,34 @@
-<x-layout titulo="Cadastrar Funcionário">
-
+<x-layout titulo="">
+    <form action="cadastrarF/salvarF" method="GET">
     <link rel="stylesheet" href="css/cadastroF.css">
+        @csrf 
 
-    <div class="top-bar"></div>
+        <div class="top-bar"></div>
 
-    <div class="container">
-        <form class="cadastro-card" action="cadastrarF/salvarF" method="POST">
-            @csrf
+        <div class="container">
+            <div class="row">
+                <label class="campo1" name="email">Email: </label> 
+                <input class="campo" type="text" name="email" placeholder="Digite seu Email...">
+                <br><br>
 
-            <div class="cadastro-titulo">Não tem cadastro?</div>
-            <div class="cadastro-subtitulo">
-                Sente, tome um café e agilize agora o seu cadastro
+                <label class="campo1" name="nomeUsuario">Nome Usuário: </label>
+                <input class="campo" type="text" name="nomeUsuario" placeholder="Crie um nome de usuário...">
+                <br><br>
+
+                <label class="campo1" name="senha">Senha: </label>
+                <input class="campo" type="password" name="senha" placeholder="Crie uma senha...">
+                <br><br>
+
+                <label class="campo1" name="senhaConfirmada">Confirme a sua senha: </label>
+                <input class="campo" type="password" name="senhaConfirmada" placeholder="Confirme a sua senha...">
+                <br><br>
+            
+                <button class="botao">Confirmar</button>
+
+                <a class="botao" href="/index"><button>Voltar</button></a>
             </div>
+        </div>
 
-            <div class="cadastro-conteudo">
+    </form>
 
-                <div class="campo">
-                    <label>E-mail</label>
-                    <input type="email" name="email" placeholder="Digite seu e-mail">
-                </div>
-
-                <div class="campo">
-                    <label>Nome de Usuário</label>
-                    <input type="text" name="nomeUsuario" placeholder="Crie um nome de usuário">
-                </div>
-
-                <div class="campo">
-                    <label>Senha</label>
-                    <input type="password" name="senha" placeholder="Crie uma senha">
-                </div>
-
-                <div class="campo">
-                    <label>Confirme a nova senha</label>
-                    <input type="password" name="senhaConfirmada" placeholder="Confirme sua senha">
-                </div>
-
-                <button type="submit" class="botao-confirmar">
-                    Confirmar
-                </button>
-
-            </div>
-        </form>
-    </div>
 </x-layout>

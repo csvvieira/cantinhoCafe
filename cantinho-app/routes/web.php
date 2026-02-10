@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/',[\App\Http\Controllers\funcionarioController::class,'paginaInicial']);
 Route::get('/cadastrarF',[\App\Http\Controllers\funcionarioController::class,'cad']);
-Route::get('/cadastrarF/salvarF',[\App\Http\Controllers\funcionarioController::class,'inserir']);
+Route::get('/cadastrarF/salvarF',[\App\Http\Controllers\funcionarioController::class,'store']);
 Route::get('/editarF/{id}',[\App\Http\Controllers\funcionarioController::class,'editar']);
 Route::get('/atualizarF/{id}',[\App\Http\Controllers\funcionarioController::class,'atualizar']);
 

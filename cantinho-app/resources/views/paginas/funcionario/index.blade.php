@@ -1,4 +1,4 @@
-<x-layout titulo="Sistema de Vendas">
+<x-layout titulo="">
 
     <link rel="stylesheet" href="css/login.css">
 
