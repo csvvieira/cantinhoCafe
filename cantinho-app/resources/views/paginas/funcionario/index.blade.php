@@ -1,5 +1,5 @@
 <x-layout titulo="">
-
+    <form action="/login" method="GET"></form>
     <link rel="stylesheet" href="css/login.css">
 
     <div class="top-bar"></div>
@@ -18,7 +18,7 @@
                 </div>
 
                 <div class="input-group">
-                    <input type="password" name="senha" placeholder="Insira sua senha">
+                    <input type="password" name="senha" placeholder="Insira sua senha" required>
                 </div>
 
                 <button type="submit" class="btn-login">

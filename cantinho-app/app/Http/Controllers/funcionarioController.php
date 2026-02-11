@@ -12,49 +12,40 @@ class funcionarioController extends Controller
         return view ('paginas.funcionario.index');
     }//Fim da página inicial.
 
-    public function login(Request $request){
-        $request->validate([
-        'nomeUsuario' => 'required',
-        'senha' => 'required'
-    ]);
-
-    $funcionario = funcionarioModel::where('nomeUsuario', $request->nomeUsuario)->first();
-
-    if ($funcionario && Hash::check($request->senha, $funcionario->senha)) {
-        session([
-            'funcionario_id' => $funcionario->id,
-            'funcionario_nome' => $funcionario->nome
-        ]);
-        //Definir rota
-        return redirect('');
+    public function esquecerSenha(){
+        return view('paginas.funcionario.recuperarF');
     }
 
-        return back()->with('erro', 'Usuário ou senha inválidos');
+    public function codigo(){
+        return view('paginas.funcionario.codigoF');
     }
 
     public function cad(){
         return view('paginas.funcionario.cadastrarF');
     }//Direcionamento para página cadastrar funcionário.
 
-    public function store(Request $request){
+    public function store(Request $request)
+    {
         $request->validate([
-        'email' => 'required|email|unique:funcionarios,email',
-        'nomeUsuario' => 'required|unique:funcionarios,nomeUsuario',
-        'senha' => 'required|min:6',
-        'senhaConfirmada' => 'required|same:senha'
-    ], [
-        'senhaConfirmada.same' => 'As senhas não conferem'
-    ]);
+            'email' => 'required|email|unique:funcionario,email',
+            'nomeUsuario' => 'required|unique:funcionario,nomeUsuario',
+            'senha' => 'required|min:6',
+            'senhaConfirmada' => 'required|min:6',
+        ]);
 
-    funcionarioModel::create([
-        'email' => $request->email,
-        'nomeUsuario' => $request->nomeUsuario,
-        'senha' => Hash::make($request->senha)
-    ]);
+        if('senha' == 'senhaConfirmada'){ 
+            // Criar funcionário
+            funcionarioModel::create([
+                'email' => $request->email,
+                'nomeUsuario' => $request->nomeUsuario,
+                'senha' => Hash::make($request->senha)
+            ]);
 
-    // Redirecionamento (rota em branco para definir depois)
-    return redirect('paginas.funcionario.index');
-}
+            return redirect('/');
+        }else{
+        
+        }       
+    }
 
     public function editar($id){
         $dado = funcionarioModel::findOrFail($id);

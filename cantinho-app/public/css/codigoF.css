@@ -1,0 +1,77 @@
+ @import url('https://fonts.googleapis.com/css2?family=Orelega+One&display=swap');
+        
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Orelega One', cursive;
+}
+
+.top-bar {
+    height: 60px;
+    background-color: #0a7a3b;
+}
+
+body {
+    margin: 0;
+    font-family: 'Orelega One', cursive;
+    background-color: #f4f4f4;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    margin-top: 40px;
+}
+
+.titulo {
+    font-size: 30px;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.subtitulo {
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+
+.texto {
+    
+    margin-top: 100px;
+    text-align: center;
+}
+
+.botao {
+    margin-top: 40px;
+    margin-left: 725px;
+    width: 25%;
+    background-color: #1c1c1c;
+    color: #ffffff;
+    border: none;
+    padding: 10px 0;
+    font-size: 14px;
+    border-radius: 2px;
+    cursor: pointer;
+    justify-content: center;
+    text-align: center;
+}
+
+.codigos {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    gap: 30px;
+    margin-bottom: 20px;
+    margin-top: 45px;
+}
+
+.codigo {
+    width: 40px;
+    height: 45px;
+    text-align: center;
+    justify-content: center;
+    font-size: 18px;
+    border: none;
+    background-color: #cfcfcf;
+}

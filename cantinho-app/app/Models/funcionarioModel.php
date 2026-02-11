@@ -9,4 +9,9 @@ class funcionarioModel extends Model
 {
     use HasFactory;
     protected $table='funcionario';
+    protected $fillable = [
+        'email',
+        'nomeUsuario',
+        'senha'
+    ];
 }

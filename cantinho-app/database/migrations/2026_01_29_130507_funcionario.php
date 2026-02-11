@@ -19,7 +19,6 @@ return new class extends Migration
             $table->longText('nomeUsuario');
             $table->longText('email');
             $table->longText('senha');
-            $table->longText('senhaConfirmada');
             $table->timestamps();
         });
     }//Fim do up
