@@ -18,7 +18,7 @@ return new class extends Migration
             $table->increments('id');
             $table->longText('nomeUsuario');
             $table->longText('email');
-            $table->longText('senha');
+            $table->integer('senha');
             $table->timestamps();
         });
     }//Fim do up

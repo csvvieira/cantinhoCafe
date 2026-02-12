@@ -13,22 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/',[\App\Http\Controllers\funcionarioController::class,'paginaInicial']);
-Route::get('/cadastrarF',[\App\Http\Controllers\funcionarioController::class,'cad']);
-Route::get('/recuperarF',[\App\Http\Controllers\funcionarioController::class,'esquecerSenha']);
-Route::get('/codigoF',[\App\Http\Controllers\funcionarioController::class,'codigo']);
-
-Route::get('/cadastrarP',[\App\Http\Controllers\produtoController::class,'cad']);
-Route::get('/cadastrarP/salvarP',[\App\Http\Controllers\produtoController::class,'inserir']);
-Route::get('/consultarPaginaInicialP',[\App\Http\Controllers\produtoController::class,'consultarPaginaInicialP']);
-Route::get('/editarP/{id}',[\App\Http\Controllers\produtoController::class,'editar']);
-Route::get('/atualizarP/{id}',[\App\Http\Controllers\produtoController::class,'atualizar']);
-Route::get('/excluirP/{id}',[\App\Http\Controllers\produtoController::class,'excluir']);
-
-Route::get('/cadastrarC',[\App\Http\Controllers\clienteController::class,'cad']);
-Route::get('/cadastrarC/salvarC',[\App\Http\Controllers\clienteController::class,'inserir']);
-Route::get('/consultarPaginaInicialC',[\App\Http\Controllers\clienteController::class,'consultarPaginaInicialC']);
-Route::get('/editarC/{id}',[\App\Http\Controllers\clienteController::class,'editar']);
-Route::get('/atualizarC/{id}',[\App\Http\Controllers\clienteController::class,'atualizar']);
-Route::get('/excluirC/{id}',[\App\Http\Controllers\clienteController::class,'excluir']);
+Route::get('/',[\App\Http\Controllers\funcionarioController::class,'login']);
+Route::get('/cadastrarLogin', [\App\Http\Controllers\funcionarioController::class,'cadastrar']);
+Route::get('/visualizarCadastrar', [\App\Http\Controllers\funcionarioController::class,'visualizarCadastrar']);
 

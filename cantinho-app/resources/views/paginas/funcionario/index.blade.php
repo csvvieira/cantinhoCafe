@@ -27,8 +27,7 @@
             </form>
 
             <div class="links">
-                <a href="/cadastrarF">Cadastro</a>
-                <a href="/recuperarF">Esqueci minha senha</a>
+                <a href="/visualizarCadastrar">Cadastro</a>
             </div>
 
         </div>

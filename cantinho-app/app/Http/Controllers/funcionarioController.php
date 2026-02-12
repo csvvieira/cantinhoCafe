@@ -8,57 +8,39 @@ use Illuminate\Support\Facades\Hash;
 
 class funcionarioController extends Controller
 {
-    public function paginaInicial(){
-        return view ('paginas.funcionario.index');
-    }//Fim da página inicial.
+    public function login(){
+        return view('paginas.funcionario.index');
+    }//Fim da login
 
-    public function esquecerSenha(){
-        return view('paginas.funcionario.recuperarF');
-    }
-
-    public function codigo(){
-        return view('paginas.funcionario.codigoF');
-    }
-
-    public function cad(){
+    public function visualizarCadastrar(){
         return view('paginas.funcionario.cadastrarF');
-    }//Direcionamento para página cadastrar funcionário.
+    }//fim da visualizarCadastrar
 
-    public function store(Request $request)
-    {
+    public function cadastrar(Request $request){
+        //Validação
         $request->validate([
-            'email' => 'required|email|unique:funcionario,email',
-            'nomeUsuario' => 'required|unique:funcionario,nomeUsuario',
-            'senha' => 'required|min:6',
-            'senhaConfirmada' => 'required|min:6',
+            'email' => 'required',
+            'nomeUsuario' => 'required',
+            'senha' => 'required | same:senhaConfirmada',
+            'senhaConfirmada' => 'required'
+        ],[
+            'senha.same' => 'As senhas não conferem.',
+            'senha.required' => 'O campo senha é obrigatório.',
+            'senhaConfirmada.required' => 'Confirme a senha'
         ]);
 
-        if('senha' == 'senhaConfirmada'){ 
-            // Criar funcionário
-            funcionarioModel::create([
-                'email' => $request->email,
-                'nomeUsuario' => $request->nomeUsuario,
-                'senha' => Hash::make($request->senha)
-            ]);
+        //Salvar
+        $email = $request->input('email');
+        $nomeUsuario = $request->input('nomeUsuario');
+        $senha = $request->input('senha');
+        //Chamar a model
+        $model = new funcionarioModel();
+        $model->email = $email;
+        $model->nomeUsuario = $nomeUsuario;
+        $model->senha = $senha;
+        //Efetivar no banco
+        $model->save();
 
-            return redirect('/');
-        }else{
-        
-        }       
-    }
-
-    public function editar($id){
-        $dado = funcionarioModel::findOrFail($id);
-        return view('paginas.funcionario.editarF', compact('dado'));
-    }//Fim do Editar.
-
-    public function atualizar(Request $request, $id){
-        funcionarioModel::where('id', $id)->update($request->all());
-        return redirect('/consultarTelaLogin');
-    }//Fim do Atualizar.
-
-    public function consultarTelaLogin(){
-        $ids = funcionarioModel::all();
-        return view('paginas.funcionario.index', compact('ids'));
-    }//Fim do consultarPaginaInicialC.
+        return redirect('/')->with('success', 'Usuário cadastrado com sucesso!');
+    }//Fim da cadastrar
 }//Fim da classe model.

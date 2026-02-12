@@ -1,8 +1,7 @@
 <x-layout titulo="">
-    <form action="cadastrarF/salvarF" method="GET">
-    <link rel="stylesheet" href="css/cadastroF.css">
+    <form action="/cadastrarLogin" method="GET">
+        <link rel="stylesheet" href="css/cadastroF.css">
         @csrf 
-
         <div class="top-bar"></div>
         <div class="texto">
             <h2 class="titulo">Não Tem Cadastro?</h2>
@@ -10,29 +9,46 @@
         </div>
 
         <div class="container">
-            <div class="row">
-              
-                <label class="campo1" name="email">Email: </label> 
-                <input class="campo" type="email" name="email" placeholder="Digite seu Email...">
+            <div class="col">
+                <div class="row">
+                    <div class="mb3">
+                        <label class="campo">Email: </label>
+                        <input type="email" name="email" class="form-control" placeholder="Informe o seu Email..." id="email">
+                    </div>
+                </div>
                 <br><br>
 
-                <label class="campo1" name="nomeUsuario">Nome Usuário: </label>
-                <input class="campo" type="text" name="nomeUsuario" placeholder="Crie um nome de usuário...">
+                <div class="row">
+                    <div class="mb3">
+                        <label class="campo">Nome do Usuário: </label>
+                        <input type="text" name="nomeUsuario" class="form-control" placeholder="Crie o nome de usuário..." id="nomeUsuario">
+                    </div>
+                </div>
                 <br><br>
 
-                <label class="campo1">Senha: </label>
-                <input class="campo" type="password" name="senha" placeholder="Crie uma senha...">
+                <div class="row">
+                    <div class="mb3">
+                        <label class="campo">Senha: </label>
+                        <input type="password" name="senha" class="form-control" placeholder="Crie a sua senha..." id="senha">
+                        @error('senha')
+                            <div class="text-danger">{{ $message }}</div>
+                        @enderror
+                    </div>
+                </div>
                 <br><br>
+                
+                <div class="row">
+                    <div class="mb3">
+                        <label class="campo">Confirmar Senha: </label>
+                        <input type="password" name="senhaConfirmada" class="form-control" placeholder="Confirme a senha criada..." id="senhaConfirmada">
+                    </div>
+                </div>
 
-                <label class="campo1">Confirme a sua senha: </label>
-                <input class="campo" type="password" name="senhaConfirmada" placeholder="Confirme a sua senha...">
-                <br><br>
-
-                <button type="submit" class="botao">Confirmar</button>
-                <a class="botao" href="/">Voltar</a>
+                <div class="row">
+                    <button type="submit" class="botao">Confirmar</button>
+                    <a class="botao" href="/">Voltar</a>
+                </div>
             </div>
-        </div>
-
+        </div>     
     </form>
-
 </x-layout>
